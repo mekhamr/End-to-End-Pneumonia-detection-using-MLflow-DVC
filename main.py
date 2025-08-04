@@ -1,6 +1,10 @@
+from classifier.utils.set_seed import set_global_seed
+set_global_seed(42)
+
 from classifier import logger
 from classifier.pipeline.stage_1_Data_ingestion import DataIngestionTrainingPipeline
 from classifier.pipeline.stage_2_preparemodel import PrepareBaseModelTrainingPipeline
+from classifier.pipeline.stage_3_model_training import ModelTrainingPipeline
 
 STAGE_NAME = "Data Ingestion stage"
 
@@ -26,3 +30,14 @@ except Exception as e:
     logger.exception(e)
     raise e
 
+STAGE_NAME = "Model Training"
+
+try:
+    logger.info(f"*******************")
+    logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")        
+    model_trainer = ModelTrainingPipeline()
+    model_trainer.main()
+    logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
+except Exception as e:
+    logger.exception(e)
+    raise e
