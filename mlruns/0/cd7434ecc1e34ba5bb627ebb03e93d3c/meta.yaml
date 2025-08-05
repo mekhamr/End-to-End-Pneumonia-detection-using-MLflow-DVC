@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/End-to-End-Pneumonia-detection-using-MLflow-DVC/mlruns/0/cd7434ecc1e34ba5bb627ebb03e93d3c/artifacts
+end_time: 1754302360313
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: cd7434ecc1e34ba5bb627ebb03e93d3c
+run_name: amazing-stork-481
+run_uuid: cd7434ecc1e34ba5bb627ebb03e93d3c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1754302266156
+status: 4
+tags: []
+user_id: sneha

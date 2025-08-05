@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/End-to-End-Pneumonia-detection-using-MLflow-DVC/mlruns/0/ad0846c7561249fd80f454f4d38dec1a/artifacts
+end_time: 1754303890763
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: ad0846c7561249fd80f454f4d38dec1a
+run_name: orderly-seal-766
+run_uuid: ad0846c7561249fd80f454f4d38dec1a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1754303786010
+status: 3
+tags: []
+user_id: sneha
