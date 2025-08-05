@@ -8,7 +8,7 @@ from classifier.pipeline.stage_3_model_training import ModelTrainingPipeline
 from classifier.pipeline.stage_4_model_evaluation import EvaluationPipeline
 
 import dagshub
-dagshub.init(repo_owner='mekharemanan', repo_name='End-to-End-Pneumonia-detection-using-MLflow-DVC', mlflow=True)
+dagshub.init(repo_owner='m', repo_name='End-to-End-Pneumonia-detection-using-DVC', mlflow=True)
 
 STAGE_NAME = "Data Ingestion stage"
 
