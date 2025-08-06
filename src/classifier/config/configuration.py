@@ -76,7 +76,7 @@ class ConfigurationManager:
         eval_config = EvaluationConfig(
             path_of_model="artifacts/training/model.h5",
             training_data="artifacts/data_ingestion/chest xray dataset",
-            mlflow_uri="https://dagshub.com/m/End-to-End-Pneumonia-detection-using-DVC.mlflow",
+            mlflow_uri="https://dagshub.com/mekharemanan/End-to-End-Pneumonia-detection-using-MLflow-DVC.mlflow",
             all_params=self.params,
             params_image_size=self.params.IMAGE_SIZE,
             params_batch_size=self.params.BATCH_SIZE
