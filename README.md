@@ -81,7 +81,7 @@
 
     AWS_REGION = us-east-1
 
-    AWS_ECR_LOGIN_URI = 
+    AWS_ECR_LOGIN_URI = demo 
 
     ECR_REPOSITORY_NAME = 
 
