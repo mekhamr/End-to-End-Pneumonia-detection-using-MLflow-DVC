@@ -1,15 +1,15 @@
 # End-to-End-Pneumonia-detection-using-MLflow-DVC
-#1. Project Initialization & Settings
+# 1. Project Initialization & Settings
     Configured config.yaml to define paths and global settings.
     Specified hyperparameters (batch size, learning rate, epochs) in params.yaml.
 	Developed entity classes for structured configuration management.
 	Implemented a centralized Configuration Manager in src/config to load and manage all settings.
-#2. Component Development
+# 2. Component Development
 	Data Ingestion – Automated dataset loading and preprocessing of chest X-ray images.
 	Base Model Preparation – Initialized DenseNet121 architecture with predefined settings.
 	Model Training – Trained the model using hyperparameters from params.yaml.
 	Model Evaluation – Recorded metrics and stored artifacts using MLflow.
-#3. Pipeline Orchestration & Versioning
+# 3. Pipeline Orchestration & Versioning
 	Integrated all components into a cohesive, automated execution pipeline.
 	Implemented main.py as the central pipeline trigger.
 	Defined and version-controlled pipeline stages in dvc.yaml for reproducibility.
