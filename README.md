@@ -1,105 +1,73 @@
 # End-to-End-Pneumonia-detection-using-MLflow-DVC
+This project detects pneumonia from chest X-ray images using a DenseNet121 deep learning model, integrated with MLflow for experiment tracking, DVC for dataset versioning, and a CI/CD pipeline for automated deployment on AWS
+
 # 1. Project Initialization & Settings
-Configured config.yaml to define paths and global settings.
-Specified hyperparameters (batch size, learning rate, epochs) in params.yaml.
-Developed entity classes for structured configuration management.
-Implemented a centralized Configuration Manager in src/config to load and manage all settings.
-# 2. Component Development
-Data Ingestion – Automated dataset loading and preprocessing of chest X-ray images.
-Base Model Preparation – Initialized DenseNet121 architecture with predefined settings.
-Model Training – Trained the model using hyperparameters from params.yaml.
-Model Evaluation – Recorded metrics and stored artifacts using MLflow.
-# 3. Pipeline Orchestration & Versioning
-Integrated all components into a cohesive, automated execution pipeline.
-Implemented main.py as the central pipeline trigger.
-Defined and version-controlled pipeline stages in dvc.yaml for reproducibility.
+* Configured config.yaml to define paths and global settings.
+* Specified hyperparameters (batch size, learning rate, epochs) in params.yaml.
+* Developed entity classes for structured configuration management.
+* Implemented a centralized Configuration Manager in src/config to load and manage all settings.
+  
+* Core functionality is implemented through modular components
+	* Data Ingestion – Automated dataset loading and preprocessing of chest X-ray images.
+	* Base Model Preparation – Initialized DenseNet121 architecture with predefined settings.
+	* Model Training – Trained the model using hyperparameters from params.yaml.
+	* Model Evaluation – Recorded metrics and stored artifacts using MLflow.
+    * Prediction Pipeline – Provides an interface for running model predictions on new images.
 
-## Workflows
+* Pipeline Orchestration & Versioning
+	* Integrated all components into a automated execution pipeline.
+	* Implemented main.py as the central pipeline trigger.
+	* Defined and version-controlled pipeline stages in dvc.yaml for reproducibility.
 
-1. Update config.yaml
-2. Update secrets.yaml [Optional]
-3. Update params.yaml
-4. Update the entity
-5. Update the configuration manager in src config
-6. Update the components
-7. Update the pipeline 
-8. Update the main.py
-9. Update the dvc.yaml
+# 2. Model Development 
+* Leveraged DenseNet121 pre-trained on ImageNet for robust feature extraction from chest X-ray images.
+* Customized the architecture by removing the original classification head and adding layers for binary pneumonia detection.
+* Enhanced performance through fine-tuning of the upper DenseNet layers.
+* Evaluated performance using Precision, Recall, and Accuracy metrics.
 
-# AWS-CICD-Deployment-with-Github-Actions
-
-## 1. Login to AWS console.
-
-## 2. Create IAM user for deployment
-
-	#with specific access
-
-	1. EC2 access : It is virtual machine
-
-	2. ECR: Elastic Container registry to save your docker image in aws
-
-
-	#Description: About the deployment
-
-	1. Build docker image of the source code
-
-	2. Push your docker image to ECR
-
-	3. Launch Your EC2 
-
-	4. Pull Your image from ECR in EC2
-
-	5. Lauch your docker image in EC2
-
-	#Policy:
-
-	1. AmazonEC2ContainerRegistryFullAccess
-
-	2. AmazonEC2FullAccess
-
-	
-## 3. Create ECR repo to store/save docker image
-    - Save the URI: 541202655809.dkr.ecr.ap-south-1.amazonaws.com/pneumonia_chestxray
-
-	
-## 4. Create EC2 machine (Ubuntu) 
-
-## 5. Open EC2 and Install docker in EC2 Machine:
-	
-	
-	#optinal
-
-	sudo apt-get update -y
-
-	sudo apt-get upgrade
-	
-	#required
-
-	curl -fsSL https://get.docker.com -o get-docker.sh
-
-	sudo sh get-docker.sh
-
-	sudo usermod -aG docker ubuntu
-
-	newgrp docker
-	
-# 6. Configure EC2 as self-hosted runner:
-    setting>actions>runner>new self hosted runner> choose os> then run command one by one
-
-
-# 7. Setup github secrets:
-
-    AWS_ACCESS_KEY_ID=
-
-    AWS_SECRET_ACCESS_KEY=
-
-    AWS_REGION = us-east-1
-
-    AWS_ECR_LOGIN_URI = demo 
-
-    ECR_REPOSITORY_NAME = 
-
-
+# 3. Model Experimentation and Tracking with MLflow
+* Used MLflow with DagsHub integration to log parameters, metrics, confusion matrices, and model artifacts.
+* Enabled model versioning, remote storage, and experiment comparison through mlflow ui.
+* 
+# 4.Data Version Control (DVC) Integration
+* Implemented DVC to track and version the chest X-ray dataset, ensuring reproducibility across experiments.
+* Stored large data files in remote storage while keeping lightweight metadata in Git for easy collaboration.
+* Defined pipeline stages in dvc.yaml to automate steps like data ingestion, model preparation, training, and evaluation.
+* Enabled rollback to previous dataset or model versions for experiment comparison and debugging.
+  
+# 5. AWS-CICD-Deployment-with-Github-Actions
+* Setup AWS Infrastructure:
+	* Create an IAM user with permissions to manage EC2 and ECR (AmazonEC2FullAccess + AmazonEC2ContainerRegistryFullAccess).
+	* Create an ECR repository to store Docker container images.
+	* Launch an EC2 instance (Ubuntu) configured with security groups that allow SSH and Docker operations.
+*Build & Push Docker Image:
+	* On your local machine or GitHub Actions runner, build a Docker image from your application code.
+	* Tag the Docker image with the ECR repository URI.
+	* Authenticate Docker client with AWS ECR using IAM credentials.
+	* Push the Docker image to the ECR repository.
+* Deploy Docker Container on EC2:
+	* SSH into the EC2 instance.
+	* Pull the latest Docker image from ECR.
+	* Run the Docker container on EC2.
+* GitHub Actions Integration:
+	* Configure the EC2 instance as a self-hosted GitHub Actions runner to allow running workflows directly on the instance.
+	* Store AWS credentials and ECR/repo information as GitHub Secrets for secure access within workflows.
+	* Create GitHub Actions workflows to automate the build, push, and deploy steps whenever code is pushed or merged into the repository.
+ * How the CI/CD Pipeline Works
+	* When you push code to GitHub, GitHub Actions triggers the pipeline workflow.
+	* The workflow:
+		* Builds the Docker image from your updated code.
+		* Authenticates and pushes the Docker image to the AWS ECR repository.
+	* On the EC2 instance, you can automate or manually:
+		* Pull the new Docker image from ECR.
+		* Restart or launch the container with the updated image.
+  # 6. Pneumonia Detection Web Application 
+  * Developed a Flask-based web application enabling user interaction through an intuitive interface.
+  * The application supports uploading chest X-ray images to classify cases as normal or pneumonia using a pre-trained DenseNet121 model.
+  * Predictions are served via a RESTful API integrated with an HTML front-end.
+  * During development, the application runs locally using app.py and is configured to operate on a custom port within an AWS environment following CI/CD deployment.
+  
+ <img width="500" height="946" alt="Screenshot (186)" src="https://github.com/user-attachments/assets/71223176-e70d-4410-9e70-5795837e0f49" />
 
 
 
