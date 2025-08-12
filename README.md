@@ -40,7 +40,7 @@ This project detects pneumonia from chest X-ray images using a DenseNet121 deep 
 	* Create an IAM user with permissions to manage EC2 and ECR (AmazonEC2FullAccess + AmazonEC2ContainerRegistryFullAccess).
 	* Create an ECR repository to store Docker container images.
 	* Launch an EC2 instance (Ubuntu) configured with security groups that allow SSH and Docker operations.
-*Build & Push Docker Image:
+* Build & Push Docker Image:
 	* On your local machine or GitHub Actions runner, build a Docker image from your application code.
 	* Tag the Docker image with the ECR repository URI.
 	* Authenticate Docker client with AWS ECR using IAM credentials.
