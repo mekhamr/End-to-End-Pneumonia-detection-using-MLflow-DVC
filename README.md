@@ -1,7 +1,7 @@
 # End-to-End-Pneumonia-detection-using-MLflow-DVC
 This project detects pneumonia from chest X-ray images using a DenseNet121 deep learning model, integrated with MLflow for experiment tracking, DVC for dataset versioning, and a CI/CD pipeline for automated deployment on AWS
 # Architecture
- <img width="970" height="695" alt="Screenshot (190)" src="https://github.com/user-attachments/assets/d8d6dd99-50bc-44c9-ada6-9db6d32361ee" />
+ <img width="500" height="395" alt="Screenshot (190)" src="https://github.com/user-attachments/assets/d8d6dd99-50bc-44c9-ada6-9db6d32361ee" />
 
 
 # 1. Project Initialization & Settings
